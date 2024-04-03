@@ -1,17 +1,10 @@
 import express from 'express';
-import usuarioModel from '../models/userModel.js';
+import usersController from '../controllers/usersController.js';
 
 const router = express.Router();
 
 
 //Traer los usuarios
-router.get('/users', async (req, res) => {
-    try {
-        const usuarios = await usuarioModel.find()
-        res.json(usuarios);
-    } catch (error) {
-        console.log(error)
-    }
-})
+router.get('/users', usersController.getAllUsers)
 
 export default router
