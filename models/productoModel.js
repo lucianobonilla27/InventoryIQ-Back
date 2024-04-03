@@ -10,6 +10,6 @@ const productoSchema = new Schema({
     fecha: String,
 });
 
-const productoModel = mongoose.model("productos", productoSchema);
+const ProductoModel = mongoose.model("productos", productoSchema);
 
-export default productoModel;
+export default ProductoModel;

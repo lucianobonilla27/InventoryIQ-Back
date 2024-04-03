@@ -11,6 +11,6 @@ const usuarioSchema = new Schema({
     isAdmin: Boolean
 })
 
-const usuarioModel = Mongoose.model("usuarios", usuarioSchema)
+const UsuarioModel = Mongoose.model("usuarios", usuarioSchema)
 
-export default usuarioModel
+export default UsuarioModel
