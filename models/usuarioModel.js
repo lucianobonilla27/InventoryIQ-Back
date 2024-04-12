@@ -5,11 +5,24 @@ const usuarioSchema = new Schema({
     name: String,
     email: {
         unique: true,
-        type: String
+        type: String,
+        require: true,
     },
-    password: String,
-    isAdmin: Boolean
-})
+    password: {
+        type: String,
+        require: true,
+    },
+    repeatPassword: {
+        type: String,
+        require: true,
+    },
+    admin: {
+        type: Boolean,
+        default: false,
+    }
+},
+{ versionKey: false }
+);
 
 const UsuarioModel = Mongoose.model("usuarios", usuarioSchema)
 
