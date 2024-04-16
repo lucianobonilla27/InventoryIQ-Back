@@ -7,4 +7,5 @@ const router = express.Router();
 //Traer los usuarios
 router.get('/users', usersController.getAllUsers)
 
+
 export default router
