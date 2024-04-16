@@ -12,7 +12,7 @@ router.post("/register", usersController.registroUSers);
 
 //Eliminar un usuario
 
-router.delete("/user/:id", usersController.deleteUser);
+router.delete("/user/delete/:id", usersController.deleteUser);
 
 //Editar un usuario
 

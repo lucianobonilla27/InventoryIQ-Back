@@ -25,8 +25,8 @@ app.use("/api", comprobationJwt, privateRouter); //primero comprueba si eciste e
 //endpoints de prueba
 //GET http://localhost:8000/api/users
 //POST http://localhost:8000/api/register
-//DELETE http://localhost:8000/api/user/id
-
+//DELETE http://localhost:8000/api/user/delete/id
+//PATCH http://localhost:8080/api/user/id
 //LOGIN http://localhost:8000/api/login
 
 

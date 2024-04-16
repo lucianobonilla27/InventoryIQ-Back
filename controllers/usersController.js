@@ -49,11 +49,13 @@ const registroUSers = async (req, res) => {
 const deleteUser = async (req, res) => {
     try {
         const { id } = req.params
-        const usuario = await UsuarioModel.findOneAndDelete(id) //función de mongo que permite eliminar un usuario mediante un id.
-        res.json(usuario, {message: "Usuario eliminado correctamente"})
+        const usuario = await UsuarioModel.findByIdAndDelete(id); //función de mongo que permite eliminar un usuario mediante un id.
+        res.json({usuario, message: "Usuario eliminado correctamente"})
     } catch (error) {
-        console.log(error)
+        console.log(error);
+        
     }
+    
 }
 
 
