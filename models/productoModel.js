@@ -8,7 +8,8 @@ const productoSchema = new Schema({
     cantidad: Number,
     categoria: String,
     fecha: String,
-});
+},
+{ versionKey: false });
 
 const ProductoModel = mongoose.model("productos", productoSchema);
 
