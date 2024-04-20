@@ -30,8 +30,8 @@ app.use(express.json());
 
 app.use("/api", userRouter);
 app.use("/api", productsRouter);
-app.use("/api", comprobationJwt, privateRouter); //primero comprueba si eciste el jwt, si existe, recién ingresa a la ruta privada.
 app.use("/api", contactRouter)
+app.use("/api", comprobationJwt, privateRouter); //primero comprueba si eciste el jwt, si existe, recién ingresa a la ruta privada.
 
 //endpoints de prueba
 //GET http://localhost:8000/api/users
