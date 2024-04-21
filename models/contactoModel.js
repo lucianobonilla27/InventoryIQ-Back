@@ -4,11 +4,7 @@ import { Schema } from "mongoose";
 const contactoSchema = new Schema ({
 
 nombre: String,
-mail: {
-type: String,
-unique: true,
-required: true
-},
+mail: String,
 telefono:String,
 rubro: String,
 consulta: String,
