@@ -2,12 +2,29 @@ import mongoose from "mongoose";
 import { Schema } from "mongoose";
 
 const productoSchema = new Schema({
-    nombre: String,
-    descripcion: String,
-    imagenUrl: String,
-    cantidad: Number,
-    categoria: String,
-    fecha: String,
+    nombre: {
+        type: String,
+        require: true,
+    },
+    descripcion:{
+        type: String,
+    },
+    imagenUrl: {
+        type: String,
+        require: true,
+    },
+    cantidad: {
+        type: Number,
+        require: true,
+    },
+    categoria: {
+        type: String,
+        require: true,
+    },
+    fecha: {
+        type: String,
+        require: true,
+    } 
 },
 { versionKey: false });
 

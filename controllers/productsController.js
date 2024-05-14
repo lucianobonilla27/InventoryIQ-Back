@@ -14,6 +14,23 @@ const getAllProducts = async (req, res) => {
 const agregarProducto = async (req, res) => {
     try {
         const { nombre, descripcion, imagenUrl, cantidad, categoria, fecha } = req.body;
+
+    
+        if (!nombre || !imagenUrl || !cantidad || !categoria || !fecha) {
+            return res.status(400).json({ message: 'Todos los campos son requeridos excepto la descripcion' });
+        }
+
+    
+        if (typeof cantidad !== 'number' || isNaN(cantidad) || cantidad < 0) {
+            return res.status(400).json({ message: 'La cantidad debe ser un número entero positivo' });
+        }
+
+    
+        const imageUrlRegex = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g;
+        if (!imageUrlRegex.test(imagenUrl)) {
+            return res.status(400).json({ message: 'La URL de la imagen no es válida' });
+        }
+
         const nuevoProducto = new ProductoModel({
             nombre,
             descripcion,
@@ -27,10 +44,10 @@ const agregarProducto = async (req, res) => {
 
     } catch (error) {
         res.status(400).json({ message: 'Error al agregar el producto' });
-        console.log(error)
-
+        console.log(error);
     }
 }
+
 
 const editarProducto = async (req, res) => {
     try {
