@@ -16,12 +16,12 @@ const agregarProducto = async (req, res) => {
         const { nombre, descripcion, imagenUrl, cantidad, categoria, fecha } = req.body;
 
     
-        if (!nombre || !imagenUrl || !cantidad || !categoria || !fecha) {
+        if (!nombre || !imagenUrl || cantidad === undefined || !categoria || !fecha) {
             return res.status(400).json({ message: 'Todos los campos son requeridos excepto la descripcion' });
         }
 
     
-        if (typeof cantidad !== 'number' || isNaN(cantidad) || cantidad < 0) {
+        if (typeof cantidad !== 'number' || isNaN(cantidad) || cantidad < 0 || !Number.isInteger(cantidad)) {
             return res.status(400).json({ message: 'La cantidad debe ser un número entero positivo' });
         }
 
