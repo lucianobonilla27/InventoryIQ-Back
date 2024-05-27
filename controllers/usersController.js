@@ -15,34 +15,40 @@ const getAllUsers = async (req, res) => {
 //Registro de usuario
 
 const registroUSers = async (req, res) => {
-    
     try {
-        const {name, email, password, repeatPasword, admin } = req.body
+        const { name, email, password, repeatPassword, admin } = req.body;
 
-        if (password !== repeatPasword) {
-            return res.status(400).json({ message: "Las contraseñas no coinciden"});
+        // Verificar si el email ya está registrado
+        const usuarioExistente = await UsuarioModel.findOne({ email });
+        if (usuarioExistente) {
+            return res.status(400).json({ message: "El correo electrónico ya está registrado" });
         }
 
+        if (password !== repeatPassword) {
+            return res.status(400).json({ message: "Las contraseñas no coinciden" });
+        }
 
-        const salt = await bcrypt.genSalt(10); //Genera un salt para encriptar la contraseña.
-        const passwordHash = await bcrypt.hash(password, salt); //Encriptar la contraseña con bcrypt.
-        const repeatPaswordHash = await bcrypt.hash(repeatPasword,salt);
+        const salt = await bcrypt.genSalt(10); // Genera un salt para encriptar la contraseña.
+        const passwordHash = await bcrypt.hash(password, salt); // Encriptar la contraseña con bcrypt.
+        const repeatPasswordHash = await bcrypt.hash(repeatPassword, salt);
+        
         const usuario = new UsuarioModel({
             name,
-            email, 
-            password: passwordHash, 
-            repeatPasword: repeatPaswordHash,
+            email,
+            password: passwordHash,
+            repeatPassword: repeatPasswordHash,
             admin
         });
-        await usuario.save()
-        res.status(201).json({message: "Usuario registrado con éxito"})
+
+        await usuario.save();
+        res.status(201).json({ message: "Usuario registrado con éxito" });
 
     } catch (error) {
-
-        res.status(400).json({message: "Error al registrar el usuario"})
-        console.log(error)
+        res.status(500).json({ message: "Error al registrar el usuario" });
+        console.log(error);
     }
-}
+};
+
 
 //Eliminar un usuario
 
