@@ -24,16 +24,19 @@ const registroUSers = async (req, res) => {
             return res.status(400).json({ message: "El correo electrónico ya está registrado" });
         }
 
+        // Verificar si las contraseñas coinciden
+        if (password !== repeatPassword) {
+            return res.status(400).json({ message: "Las contraseñas no coinciden" });
+        }
 
+        // Encriptar la contraseña
         const salt = await bcrypt.genSalt(10); // Genera un salt para encriptar la contraseña.
         const passwordHash = await bcrypt.hash(password, salt); // Encriptar la contraseña con bcrypt.
-        const repeatPasswordHash = await bcrypt.hash(repeatPassword, salt);
-        
+
         const usuario = new UsuarioModel({
             name,
             email,
             password: passwordHash,
-            repeatPassword: repeatPasswordHash,
             admin
         });
 
@@ -45,6 +48,7 @@ const registroUSers = async (req, res) => {
         console.log(error);
     }
 };
+
 
 
 //Eliminar un usuario
