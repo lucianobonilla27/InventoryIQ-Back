@@ -24,9 +24,6 @@ const registroUSers = async (req, res) => {
             return res.status(400).json({ message: "El correo electrónico ya está registrado" });
         }
 
-        if (password !== repeatPassword) {
-            return res.status(400).json({ message: "Las contraseñas no coinciden" });
-        }
 
         const salt = await bcrypt.genSalt(10); // Genera un salt para encriptar la contraseña.
         const passwordHash = await bcrypt.hash(password, salt); // Encriptar la contraseña con bcrypt.
