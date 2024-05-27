@@ -13,7 +13,6 @@ const getAllUsers = async (req, res) => {
 };
 
 //Registro de usuario
-
 const registroUSers = async (req, res) => {
     try {
         const { name, email, password, repeatPassword, admin } = req.body;
@@ -23,6 +22,10 @@ const registroUSers = async (req, res) => {
         if (usuarioExistente) {
             return res.status(400).json({ message: "El correo electrónico ya está registrado" });
         }
+
+        // Logs para depuración
+        console.log("Contraseña:", password);
+        console.log("Repetir contraseña:", repeatPassword);
 
         // Verificar si las contraseñas coinciden
         if (password !== repeatPassword) {
